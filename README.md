@@ -1,4 +1,4 @@
-## EXNO-3-DS
+![image](https://github.com/user-attachments/assets/46af2bdf-a7a2-4052-b5f6-a04a7775da5a)## EXNO-3-DS
 
 # AIM:
 To read the given data and perform Feature Encoding and Transformation process and save the data to a file.
@@ -31,7 +31,110 @@ We use this categorical data encoding technique when the features are nominal(do
 • Yeojohnson method
 
 # CODING AND OUTPUT:
-       # INCLUDE YOUR CODING AND OUTPUT SCREENSHOTS HERE
+```c
+#AVINASH T
+#212223230026
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+df=pd.read_csv("Encoding Data.csv")
+df
+```
+![image](https://github.com/user-attachments/assets/cd16be02-db99-4c85-863f-1dfdee486919)
+```c
+#odinal encoding
+from sklearn.preprocessing import LabelEncoder,OrdinalEncoder
+pm=['Hot','Warm','Cold']
+e1=OrdinalEncoder(categories=[pm])
+e1.fit_transform(df[["ord_2"]])
+```
+![image](https://github.com/user-attachments/assets/d855533a-c67b-488b-98f7-3433c72ecfbe)
+```c
+df['bo2']=e1.fit_transform(df[["ord_2"]])
+df
+```
+![image](https://github.com/user-attachments/assets/a148d715-27a8-4429-ae9e-2335dc5678f0)
+```c
+le=LabelEncoder()
+dfc=df.copy()
+dfc['ord_2']=le.fit_transform(dfc['ord_2'])
+dfc
+```
+![image](https://github.com/user-attachments/assets/efc8c594-4854-461e-bb0a-97d5a5253b8b)
+```c
+from sklearn.preprocessing import OneHotEncoder
+ohe=OneHotEncoder(sparse=False)
+df2=df.copy()
+enc=pd.DataFrame(ohe.fit_transform(df2[["nom_0"]]))
+df2=pd.concat([df2,enc],axis=1)
+df2
+```
+![image](https://github.com/user-attachments/assets/b6239160-bd4a-4e8f-8fd6-e2bd22bf6e42)
+```c
+pd.get_dummies(df2,columns=["nom_0"])
+```
+![image](https://github.com/user-attachments/assets/354d62cb-7ea7-4050-9c26-6ce35501f1be)
+```c
+pip install --upgrade category_encoders
+from category_encoders import BinaryEncoder
+df=pd.read_csv("data.csv")
+df
+```
+![image](https://github.com/user-attachments/assets/0880c33d-a7ee-4789-86a0-1366d24182c2)
+```c
+be=BinaryEncoder()
+nd=be.fit_transform(df['Ord_2'])
+df
+```
+![image](https://github.com/user-attachments/assets/f17222db-78a2-48f7-8ce0-8207407d5287)
+```c
+dfb=pd.concat([df,nd],axis=1)
+dfb
+```
+![image](https://github.com/user-attachments/assets/bf6a6f0f-9367-4d13-aaa3-750101498ea6)
+```c
+from category_encoders import TargetEncoder
+te=TargetEncoder()
+CC=df.copy()
+new=te.fit_transform(X=CC["City"],y=CC["Target"])
+CC=pd.concat([CC,new],axis=1)
+CC
+```
+![image](https://github.com/user-attachments/assets/f1cd7a47-1e9f-495a-a06d-f74c522d7571)
+```c
+from scipy import stats
+df=pd.read_csv("Data_to_Transform.csv")
+df
+```
+![image](https://github.com/user-attachments/assets/a21d6a77-ad5c-41b1-acc2-a93647418505)
+```c
+df.skew()
+```
+![image](https://github.com/user-attachments/assets/ef5f546b-87b4-4a15-91b8-64c537d31a6b)
+```c
+np.log(df["Highly Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/07c39101-785a-48f5-9c61-1f2c22cb1e5a)
+```c
+np.reciprocal(df["Moderate Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/dd25d7f1-123c-4b20-b6f3-8fa929f3a600)
+```c
+np.sqrt(df["Highly Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/e787c083-75c3-4433-9a35-09159073aa0e)
+```c
+np.square(df["Highly Positive Skew"])
+```
+![image](https://github.com/user-attachments/assets/7e6c2c76-931f-4964-a08a-9e0d7d579548)
+
+```c
+df["Highly Positive Skew_boxcox"], parameters=stats.boxcox(df["Highly Positive Skew"])
+df
+```
+![image](https://github.com/user-attachments/assets/d2964424-9d8b-453a-b695-140c8c067250)
+
 # RESULT:
        # INCLUDE YOUR RESULT HERE
 
