@@ -1,5 +1,6 @@
-![image](https://github.com/user-attachments/assets/46af2bdf-a7a2-4052-b5f6-a04a7775da5a)## EXNO-3-DS
-
+## EXNO-3-DS
+## NAME : AVINASH T
+## REG NO : 212223230026
 # AIM:
 To read the given data and perform Feature Encoding and Transformation process and save the data to a file.
 
@@ -135,7 +136,53 @@ df
 ```
 ![image](https://github.com/user-attachments/assets/d2964424-9d8b-453a-b695-140c8c067250)
 
+```c
+df.skew()
+```
+![image](https://github.com/user-attachments/assets/ca4bb340-b013-4a9a-8855-b5e45da07f9b)
+
+```c
+df["Highly Negative Skew_yeojohnson"],parameters=stats.yeojohnson(df["Highly Negative Skew"])
+df.skew()
+```
+![image](https://github.com/user-attachments/assets/ec25ee6d-b874-46ef-83cd-50086ea08014)
+
+```c
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal')
+df["Moderate Negative Skew_1"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+df
+```
+![image](https://github.com/user-attachments/assets/f4e64e55-ad96-42f6-b6a6-69bcc0c8f3de)
+
+```c
+import statsmodels.api as sm
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/f2d229f5-4506-4ea4-9ac0-ecab8d444107)
+
+```c
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew"]),line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/18f7f4df-4aef-4ee8-bfec-c2ba7c0a7b87)
+
+```c
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal',n_quantiles=891)
+df["Moderate Negative Skew"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/83a98ed8-6428-4b6a-872a-9e0ae80b0a6a)
+```c
+df["Highly Negative Skew_1"]=qt.fit_transform(df[["Highly Negative Skew"]])
+sm.qqplot(df["Highly Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/373f54c1-1692-4106-9ca7-d41eeb5502e2)
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+       thus the experiment is successfully implemented
 
        
